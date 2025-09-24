@@ -2,6 +2,7 @@
 
 namespace Drupal\redirect_regex;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Language\Language;
 use Drupal\redirect\RedirectRepository;
 
