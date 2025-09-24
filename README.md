@@ -2,6 +2,27 @@
 
 This module extends Drupal's core redirect functionality to support regex pattern matching in addition to exact path matching using the core redirect entities.
 
+## Installation
+
+Add to `composer.json`:
+```
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/baikho/drupal-redirect_regex"
+    }
+  ],
+  "require": {
+    "drupal/redirect_regex": "1.0.0-alpha1"
+  }
+}
+```
+ And run:
+```
+composer require drupal/redirect_regex:1.0.0-alpha1
+```
+
 ## Architecture
 
 This module follows the same architectural patterns as the core redirect module:
