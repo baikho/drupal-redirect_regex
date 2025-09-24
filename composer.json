@@ -9,7 +9,7 @@
       "email": "sang.lostrie@gmail.com"
     }
   ],
-  "require-dev": {
+  "require": {
     "drupal/redirect": "^1.12"
   }
 }
