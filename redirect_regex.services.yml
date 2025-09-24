@@ -1,5 +1,4 @@
 services:
   redirect.repository:
     class: Drupal\redirect_regex\RedirectRegexRepository
-    arguments: ['@entity_type.manager', '@database', '@config.factory']
-
+    arguments: ['@entity_type.manager', '@database', '@config.factory', '@request_stack']
