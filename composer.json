@@ -1,0 +1,15 @@
+{
+  "name": "drupal/redirect_regex",
+  "description": "Provides regex-based redirects for Drupal.",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Sang Lostrie",
+      "email": "sang.lostrie@gmail.com"
+    }
+  ],
+  "require-dev": {
+    "drupal/redirect": "^1.0"
+  }
+}
