@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the redirect_regex module.
+ */
+
+use Drupal\Core\Config\Config;
+
+/**
+ * Implements hook_install().
+ */
+function redirect_regex_install() {
+  // Update the redirect view to use the regex source formatter.
+  _redirect_regex_update_view_config();
+}
+
+/**
+ * Update the redirect view configuration to use redirect_regex_source formatter.
+ */
+function _redirect_regex_update_view_config() {
+  $config = \Drupal::service('config.factory')->getEditable('views.view.redirect');
+
+  // Update the field type in the default display.
+  $field_config = &$config->get('display.default.display_options.fields.redirect_source__path');
+  if ($field_config && isset($field_config['type'])) {
+    $field_config['type'] = 'redirect_regex_source';
+    $config->set('display.default.display_options.fields.redirect_source__path', $field_config);
+    $config->save();
+  }
+}
+
+/**
+ * Update redirect view to use regex source formatter.
+ */
+function redirect_regex_update_10001() {
+  _redirect_regex_update_view_config();
+}
