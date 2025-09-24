@@ -13,9 +13,9 @@ class RedirectRegexRepository extends RedirectRepository {
   /**
    * {@inheritdoc}
    */
-  public function findMatchingRedirect($source_path, array $query = [], $language = Language::LANGCODE_NOT_SPECIFIED) {
+  public function findMatchingRedirect($source_path, array $query = [], $language = Language::LANGCODE_NOT_SPECIFIED, ?CacheableMetadata $cacheable_metadata = NULL) {
     // First check for regular redirects using parent logic.
-    $redirect = parent::findMatchingRedirect($source_path, $query, $language);
+    $redirect = parent::findMatchingRedirect($source_path, $query, $language, $cacheable_metadata);
     if ($redirect) {
       return $redirect;
     }
@@ -25,7 +25,9 @@ class RedirectRegexRepository extends RedirectRepository {
   }
 
   /**
-   * {@inheritdoc}
+   * Compatibility with Redirect patch.
+   *
+   * @see https://dgo.to/2879648
    */
   protected function findRedirectByHashes(array $hashes, $source_path, $language, array $query = []) {
     // First try the parent implementation (exact matches and wildcards).
