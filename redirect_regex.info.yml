@@ -4,4 +4,4 @@ description: 'Extends the redirect module to support regex pattern matching usin
 package: Custom
 core_version_requirement: '>=10'
 dependencies:
-  - redirect:redirect
+  - redirect:redirect (>=1.12)
