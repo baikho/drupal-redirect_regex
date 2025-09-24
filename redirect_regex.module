@@ -1,0 +1,51 @@
+<?php
+
+/**
+ * @file
+ * Main module file for redirect_regex.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function redirect_form_redirect_redirect_form_alter(&$form, FormStateInterface $form_state) {
+  _redirect_regex_add_help_text($form);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function redirect_form_redirect_redirect_edit_form_alter(&$form, FormStateInterface $form_state) {
+  _redirect_regex_add_help_text($form);
+}
+
+/**
+ * Add help text to the redirect form about regex functionality.
+ */
+function _redirect_regex_add_help_text(&$form) {
+  // Add help text as a markup element at the top of the form.
+  $form['container'] = [
+    '#title' => t("Regular Expression Redirects"),
+    '#type' => 'details',
+  ];
+  $form['container']['regex_help'] = [
+    '#type' => 'markup',
+    '#markup' => '<div class="" style="margin-bottom: 20px;">' .
+      '<p>' . t('To create a regex redirect:') . '</p>' .
+      '<ol>' .
+      '<li>' . t('Prefix your source path with <code>regex:</code>') . '</li>' .
+      '<li>' . t('Use regex patterns (e.g., <code>\d+</code> for numbers, <code>.*</code> for anything)') . '</li>' .
+      '<li>' . t('Escape forward slashes as <code>\/</code>') . '</li>' .
+      '<li>' . t('Do not include leading slashes in your pattern') . '</li>' .
+      '</ol>' .
+      '<p>' . t('Examples:') . '</p>' .
+      '<ul>' .
+      '<li><code>regex:blog\/\d+\/.*</code> → matches blog posts with numeric IDs</li>' .
+      '<li><code>regex:user\/\d+\/profile</code> → matches user profile pages</li>' .
+      '<li><code>regex:page\/old\/([a-z]+)</code> → matches old page URLs with letters</li>' .
+      '</ul>' .
+      '</div>',
+  ];
+}
