@@ -22,7 +22,7 @@ function _redirect_regex_update_view_config() {
   $config = \Drupal::service('config.factory')->getEditable('views.view.redirect');
 
   // Update the field type in the default display.
-  $field_config = &$config->get('display.default.display_options.fields.redirect_source__path');
+  $field_config = $config->get('display.default.display_options.fields.redirect_source__path');
   if ($field_config && isset($field_config['type'])) {
     $field_config['type'] = 'redirect_regex_source';
     $config->set('display.default.display_options.fields.redirect_source__path', $field_config);
