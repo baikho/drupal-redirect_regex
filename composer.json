@@ -10,6 +10,6 @@
     }
   ],
   "require-dev": {
-    "drupal/redirect": "^1.0"
+    "drupal/redirect": "^1.12"
   }
 }

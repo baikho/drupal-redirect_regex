@@ -63,6 +63,7 @@ class RedirectRegexRepository extends RedirectRepository {
       $query = $this->manager->getStorage('redirect')->getQuery()
         ->condition('redirect_source.path', 'regex:', 'STARTS_WITH')
         ->condition('language', [$language, Language::LANGCODE_NOT_SPECIFIED], 'IN')
+        ->condition('enabled', TRUE)
         ->accessCheck(FALSE);
 
       $redirect_ids = $query->execute();
