@@ -1,6 +1,6 @@
 # Redirect Regex Module
 
-This module extends Drupal's core redirect functionality to support regex pattern matching in addition to exact path matching using the core redirect entities.
+This module extends the [Redirect](https://www.drupal.org/project/redirect) module to support regex pattern matching in addition to exact path matching using the redirect entities.
 
 ## Installation
 
@@ -14,20 +14,20 @@ Add to `composer.json`:
     }
   ],
   "require": {
-    "drupal/redirect_regex": "1.0.0-alpha1"
+    "drupal/redirect_regex": "1.0.0-alpha5"
   }
 }
 ```
  And run:
 ```
-composer require drupal/redirect_regex:1.0.0-alpha1
+composer require drupal/redirect_regex:1.0.0-alpha5
 ```
 
 ## Architecture
 
-This module follows the same architectural patterns as the core redirect module:
+This module follows the same architectural patterns as the redirect module:
 
-- **Extends RedirectRepository**: The `RedirectRegexRepository` extends the core `RedirectRepository` class
+- **Extends RedirectRepository**: The `RedirectRegexRepository` extends the `RedirectRepository` class
 - **Service Override**: Uses a service provider to override the `redirect.repository` service
 - **Convention-Based**: Regex redirects are identified by source paths starting with `regex:`
 - **Backward Compatibility**: All existing redirect functionality continues to work unchanged
@@ -68,7 +68,7 @@ This module seamlessly integrates with:
 
 ## Dependencies
 
-- `redirect:redirect` (core) - provides the redirect entities and admin interface
+- `redirect:redirect` (>=1.12) - provides the redirect entities and admin interface
 
 ## Usage
 
