@@ -7,7 +7,7 @@ use Drupal\Core\Language\Language;
 use Drupal\redirect\RedirectRepository;
 
 /**
- * Extended redirect repository that supports regex pattern matching using core redirect entities.
+ * Extended redirect repository that supports regex pattern matching using redirect entities.
  */
 class RedirectRegexRepository extends RedirectRepository {
 
@@ -20,8 +20,7 @@ class RedirectRegexRepository extends RedirectRepository {
     if ($redirect) {
       return $redirect;
     }
-
-    // If no regular redirect found, check for regex redirects in core redirect entities.
+    // If no regular redirect found, check for regex redirects in redirect entities.
     return $this->findMatchingRegexRedirect($source_path, $language);
   }
 
@@ -31,19 +30,15 @@ class RedirectRegexRepository extends RedirectRepository {
    * @see https://dgo.to/2879648
    */
   protected function findRedirectByHashes(array $hashes, $source_path, $language, array $query = []) {
-    // First try the parent implementation (exact matches and wildcards).
     $redirect = parent::findRedirectByHashes($hashes, $source_path, $language, $query);
-
-    // If no redirect found, check for regex redirects.
-    if (!$redirect) {
-      $redirect = $this->findMatchingRegexRedirect($source_path, $language);
+    if ($redirect) {
+      return $redirect;
     }
-
-    return $redirect;
+    return $this->findMatchingRegexRedirect($source_path, $language);
   }
 
   /**
-   * Finds a regex redirect for a given path and language using core redirect entities.
+   * Finds a regex redirect for a given path and language using redirect entities.
    *
    * Regex redirects are identified by having a source path that starts with 'regex:'.
    * The actual regex pattern follows the 'regex:' prefix.
